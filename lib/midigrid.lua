@@ -210,7 +210,22 @@ end
 
 function midigrid._handle_dev_add(id, name, dev)
     midigrid.core_midi_add(id, name, dev)
-    -- midigrid.update_devices()
+    -- If a supported device (re)connects while already attached to the vgrid
+    -- (e.g. the controller re-enumerates USB mid-script, or wakes from sleep),
+    -- re-attach it live so the running script keeps working. connect() called
+    -- with devices still attached only clears buffers, so drop them first to
+    -- force a full rescan + attach.
+    if _ENV.midigrid and _ENV.midigrid.vgrid and next(_ENV.midigrid.vgrid.devices) then
+        local dev_type = supported_devices.find_midi_device_type(dev)
+        if dev_type then
+            clock.run(function()
+                clock.sleep(0.2) -- let the device settle before re-attaching
+                _ENV.midigrid.vgrid.devices = {}
+                _ENV.midigrid.connect()
+                print("midigrid: re-attached " .. name)
+            end)
+        end
+    end
 end
 
 function midigrid._handle_dev_remove(id)
