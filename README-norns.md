@@ -18,10 +18,11 @@ README / lines forum thread for general midigrid usage.
 |---------|------|
 | Pads Bank A (4x4) | Note On/Off 36-51, CH 10 |
 | Pad LEDs | Note On CH 10, velocity = color (0 = off) |
-| Pads Bank B | Note On/Off 52-67, CH 10 (unused) |
+| Pads Bank B | Note On/Off 52-67, CH 10 (left column 52/56/60/64 = direct page select; rest unused) |
+| Page LEDs | Bank B left column: vel 32 = current page, vel 5 = others |
 | Knobs A / B | CC 30-37 / CC 38-45, CH 1, absolute (both banks always transmit) |
 | `<` `>` PLAY PAUSE REC | CC 25-29 CH 1, push (127 press / 0 release) |
-| Button LEDs | Note On CH 1, notes 25-29 (not driven yet) |
+| Button LEDs | Note On CH 1, notes 25-29 (PLAY driven: 127 = transport running) |
 | PAD BANK / KNOB BANK / NOTE REPEAT / BT | local only, send nothing |
 
 ## Behavior on norns
