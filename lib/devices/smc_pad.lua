@@ -22,12 +22,15 @@ local device = include('midigrid/lib/devices/generic_device')
 device.width = 4
 device.height = 4
 
--- rows are listed bottom-up to match the monome convention (y=1 is the bottom)
+-- rows are listed so that grid y=1 (monome bottom) matches the physical pad
+-- row that carries notes 48-51 (the note numbers run top-down on the
+-- hardware, confirmed live: the bottom-up mapping rendered vertically
+-- inverted)
 device.grid_notes = {
-  { 36, 37, 38, 39 },
-  { 40, 41, 42, 43 },
+  { 48, 49, 50, 51 },
   { 44, 45, 46, 47 },
-  { 48, 49, 50, 51 }
+  { 40, 41, 42, 43 },
+  { 36, 37, 38, 39 }
 }
 
 -- grid LED level 0-15 -> pad color velocity, quantized from the colors the
