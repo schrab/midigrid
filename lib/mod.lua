@@ -45,7 +45,7 @@ end
 
 -- The available grid sizes
 
-local grid_sizes = { "64", "128", "256" }
+local grid_sizes = { "64", "128", "256", "8x8p", "4x4" }
 
 -- The available palettes (for Launchpad Gen 3 RGB devices)
 

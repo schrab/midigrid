@@ -35,7 +35,35 @@ function Vgrid:init(layout)
       if (x > self.width or y > self.height) then return nil end
       return 1 end
     self.new_quad(1,8,8,0,0)
-     
+
+  elseif self.layout == '8x8p' then
+    -- a virtual 8x8 made of four 4x4 quads, paged by the device (e.g. SMC-PAD)
+    self.locate_in_layout = function(self,x,y)
+      if (x < 1 or y < 1) then return nil end
+      if (x > self.width or y > self.height) then return nil end
+      if (y <= 4) then
+        if (x <= 4) then return 1 else return 2 end
+      else
+        if (x <= 4) then return 3 else return 4 end
+      end
+    end
+    self.new_quad(1,4,4,0,0)
+    self.new_quad(2,4,4,4,0)
+    self.new_quad(3,4,4,0,4)
+    self.new_quad(4,4,4,4,4)
+    self.width = 8
+    self.height = 8
+
+  elseif self.layout == '4x4' then
+    -- a single honest 4x4 grid
+    self.locate_in_layout = function(self,x,y)
+      if (x < 1 or y < 1) then return nil end
+      if (x > self.width or y > self.height) then return nil end
+      return 1 end
+    self.new_quad(1,4,4,0,0)
+    self.width = 4
+    self.height = 4
+
   elseif self.layout == '128' or '256' then
     self.locate_in_layout = function(self,x,y)
       if (x < 1 or y < 1) then return nil end
