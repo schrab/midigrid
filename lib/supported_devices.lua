@@ -57,9 +57,9 @@ local supported_devices = {
 
     -- M-VAVE / Cuvave SMC-PAD: 4x4 pads (notes 36-51, CH 10, pad LEDs on
     -- CH 10), knobs CC 30-45 CH 1, transport buttons CC 25-29 CH 1.
-    -- The USB device exposes three ports (SINCO MIDI 1/2/3); pads were
-    -- verified on port 1 - adjust the base name if yours differs.
-    { midi_base_name = 'sinco midi 1', device_type='smc_pad' },
+    -- The USB device exposes three ports; norns names them SINCO 1/2/3
+    -- (pads verified on port 1 - adjust the base name if yours differs).
+    { midi_base_name = 'sinco 1', device_type='smc_pad' },
 
   }
 }
